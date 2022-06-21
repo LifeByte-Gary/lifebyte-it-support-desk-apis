@@ -18,4 +18,6 @@ Route::prefix('v1')
     ->namespace('App\Http\Controllers\Api\V1')
     ->group(function () {
         require __DIR__ . '/auth.php';
+
+        Route::get('/users', 'UserController@index')->name('user.index');
     });
