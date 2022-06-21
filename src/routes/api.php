@@ -21,6 +21,6 @@ Route::prefix('v1')
         /*Route::middleware('auth:sanctum')
             ->group(function () {
             });*/
-        Route::get('employees')->name('employees.index');
+        Route::get('employees', 'EmployeeController@index')->name('employees.index');
     });
 
