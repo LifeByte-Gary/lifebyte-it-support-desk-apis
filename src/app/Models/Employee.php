@@ -21,6 +21,12 @@ class Employee extends Authenticatable
         'name',
         'email',
         'password',
+        'department',
+        'job_title',
+        'location_office',
+        'location_position',
+        'state',
+        'is_admin'
     ];
 
     /**
