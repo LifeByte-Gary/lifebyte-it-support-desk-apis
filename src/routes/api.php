@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,14 @@ Route::prefix('v1')
     ->group(function () {
         require __DIR__ . '/auth.php';
 
-        Route::get('/users', 'UserController@index')->name('user.index');
+        Route::get('/user', static function (Request $request) {
+            return $request->user();
+        })->name('auth.user');
+        
+        Route::middleware(['auth'])
+            ->group(function () {
+
+                Route::get('/users', 'UserController@index')->name('user.index');
+
+            });
     });
