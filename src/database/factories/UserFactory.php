@@ -33,7 +33,6 @@ class UserFactory extends Factory
             'location_office' => '55C',
             'location_position' => 'Table ' . $this->faker->unique()->randomNumber(),
             'state' => $this->faker->numberBetween(0, 1),
-            'type' => $this->faker->numberBetween(1, 3),
             'is_admin' => false,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

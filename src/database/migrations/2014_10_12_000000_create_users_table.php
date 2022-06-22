@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('location_office');
             $table->string('location_position');
             $table->tinyInteger('state')->default(1);
-            $table->tinyInteger('type')->default(1);
             $table->boolean('is_admin')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

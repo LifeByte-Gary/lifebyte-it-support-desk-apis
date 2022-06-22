@@ -20,7 +20,6 @@ class User extends Authenticatable
         'location_office',
         'location_position',
         'state',
-        'type',
         'is_admin'
     ];
 

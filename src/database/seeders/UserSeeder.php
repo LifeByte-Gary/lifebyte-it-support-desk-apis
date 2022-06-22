@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
             'job_title' => 'IT',
             'location_position' => 'Table 0',
             'state' => 1,
-            'type' => 1,
             'is_admin' => true,
         ]);
 
