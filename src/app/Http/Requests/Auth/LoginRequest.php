@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use JetBrains\PhpStorm\ArrayShape;
 
 class LoginRequest extends FormRequest
 {
@@ -16,7 +17,7 @@ class LoginRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -26,7 +27,8 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    #[ArrayShape(['email' => "string[]", 'password' => "string[]"])]
+    public function rules(): array
     {
         return [
             'email' => ['required', 'string', 'email'],
@@ -39,13 +41,17 @@ class LoginRequest extends FormRequest
      *
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function authenticate()
+    public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (!Auth::attempt([
+            'email' => $this->string('email'),
+            'password' => $this->string('password'),
+            'is_admin' => 1
+        ], $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -61,11 +67,11 @@ class LoginRequest extends FormRequest
      *
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function ensureIsNotRateLimited()
+    public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -86,8 +92,8 @@ class LoginRequest extends FormRequest
      *
      * @return string
      */
-    public function throttleKey()
+    public function throttleKey(): string
     {
-        return Str::lower($this->input('email')).'|'.$this->ip();
+        return Str::lower($this->input('email')) . '|' . $this->ip();
     }
 }
