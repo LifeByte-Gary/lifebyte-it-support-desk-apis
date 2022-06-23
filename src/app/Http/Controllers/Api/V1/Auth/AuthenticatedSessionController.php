@@ -16,7 +16,7 @@ class AuthenticatedSessionController extends Controller
      * @param LoginRequest $request
      * @return Response
      */
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): Response
     {
         $request->authenticate();
 
@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): Response
     {
         Auth::guard('web')->logout();
 
