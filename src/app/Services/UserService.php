@@ -20,8 +20,12 @@ class UserService
         return new UserCollection($this->userRepository->all());
     }
 
-    public function fuzzySearchUsersByName(String $name): UserCollection
+    public function fuzzySearchUsersByName(String | null $name): UserCollection
     {
-        return new UserCollection($this->userRepository->fuzzySearchByName($name));
+        if (isset($name)) {
+            return new UserCollection($this->userRepository->fuzzySearchByName($name));
+        }
+
+        return new UserCollection($this->userRepository->all());
     }
 }
