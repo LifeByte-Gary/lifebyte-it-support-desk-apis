@@ -10,11 +10,11 @@ class UserRepository implements UserInterface
 {
     public function all(): LengthAwarePaginator
     {
-        return User::paginate();
+        return User::paginate()->withQueryString();
     }
 
     public function fuzzySearchByName(String $name): LengthAwarePaginator
     {
-        return User::where('name', 'LIKE', "%{$name}%")->paginate();
+        return User::where('name', 'LIKE', "%{$name}%")->paginate()->withQueryString();
     }
 }
