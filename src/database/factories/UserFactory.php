@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends Factory
  */
-class EmployeeFactory extends Factory
+class UserFactory extends Factory
 {
     /**
      * Define the model's default state.

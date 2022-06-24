@@ -18,9 +18,16 @@ Route::prefix('v1')
     ->name('api.v1.')
     ->namespace('App\Http\Controllers\Api\V1')
     ->group(function () {
-        /*Route::middleware('auth:sanctum')
-            ->group(function () {
-            });*/
-        Route::get('employees', 'EmployeeController@index')->name('employees.index');
-    });
+        require __DIR__ . '/auth.php';
 
+        Route::get('/user', static function (Request $request) {
+            return $request->user();
+        })->name('auth.user');
+        
+        Route::middleware(['auth'])
+            ->group(function () {
+
+                Route::get('/users', 'UserController@index')->name('user.index');
+
+            });
+    });

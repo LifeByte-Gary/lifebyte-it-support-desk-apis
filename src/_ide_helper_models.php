@@ -12,7 +12,7 @@
 
 namespace App\Models{
 /**
- * App\Models\Employee
+ * App\Models\User
  *
  * @property int $id
  * @property string $name
@@ -32,25 +32,25 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
- * @method static \Database\Factories\EmployeeFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Employee newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Employee query()
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereDepartment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereIsAdmin($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereJobTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereLocationOffice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereLocationPosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereState($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereUpdatedAt($value)
+ * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDepartment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereJobTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLocationOffice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLocationPosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
-	class Employee extends \Eloquent {}
+	class User extends \Eloquent {}
 }
 
