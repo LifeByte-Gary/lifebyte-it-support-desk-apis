@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
+use phpDocumentor\Reflection\Types\Integer;
 
 class UserService
 {
@@ -21,6 +23,13 @@ class UserService
     public function getAllUsers(): UserCollection
     {
         return new UserCollection($this->userRepository->all());
+    }
+
+    public function findAUserById(Integer $id): UserResource
+    {
+        $user = User::findOrFail($id);
+
+        return new UserResource($user);
     }
 
     public function fuzzySearchUsersByName(string|null $name): UserCollection

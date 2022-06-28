@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use phpDocumentor\Reflection\Types\Integer;
 
 class UserController extends Controller
 {
@@ -36,11 +35,12 @@ class UserController extends Controller
         return $this->userService->getAllUsers();
     }
 
-    public function show(Request $request, User $user)
+    public function show(Request $request, Integer $id): UserResource
     {
+        return $this->userService->findAUserById($id);
     }
 
-    public function store(UserCreateRequest $request): Application|ResponseFactory|Response
+    public function store(UserCreateRequest $request)
     {
         $this->userService->createAUser($request);
 
