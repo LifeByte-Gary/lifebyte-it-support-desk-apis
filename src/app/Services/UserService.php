@@ -9,7 +9,6 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Integer;
 
 class UserService
 {
@@ -25,7 +24,7 @@ class UserService
         return new UserCollection($this->userRepository->all());
     }
 
-    public function findAUserById(Integer $id): UserResource
+    public function findAUserById($id): UserResource
     {
         $user = User::findOrFail($id);
 
@@ -41,11 +40,12 @@ class UserService
         return new UserCollection($this->userRepository->all());
     }
 
-    public function createAUser(UserCreateRequest $request): void
+    public function createAUser(UserCreateRequest $request)
     {
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-        User::create($input);
+
+        return User::create($input);
     }
 
     public function updateAUser(UserUpdateRequest $request, User $user): void

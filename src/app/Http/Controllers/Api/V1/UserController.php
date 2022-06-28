@@ -9,7 +9,6 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Integer;
 
 class UserController extends Controller
 {
@@ -35,16 +34,16 @@ class UserController extends Controller
         return $this->userService->getAllUsers();
     }
 
-    public function show(Request $request, Integer $id): UserResource
+    public function show(Request $request, $id): UserResource
     {
         return $this->userService->findAUserById($id);
     }
 
     public function store(UserCreateRequest $request)
     {
-        $this->userService->createAUser($request);
+        $newUser = $this->userService->createAUser($request);
 
-        return response(null, 204);
+        return response($newUser);
     }
 
     public function update(UserUpdateRequest $request, User $user)

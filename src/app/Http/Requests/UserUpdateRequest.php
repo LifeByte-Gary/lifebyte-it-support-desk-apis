@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -17,7 +15,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', Rule::unique(User::class, 'email'), 'email'],
+            'email' => ['required', 'email'],
             'department' => ['nullable', 'string'],
             'job_title' => ['nullable', 'string'],
             'location_office' => ['nullable', 'string'],
