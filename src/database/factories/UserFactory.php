@@ -17,6 +17,11 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $companies = [
+            'LifeByte',
+            'TMGM'
+        ];
+
         $departments = [
             'IT Support',
             'Development',
@@ -35,9 +40,10 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
+            'company' => $companies[array_rand($companies)],
             'department' => $departments[array_rand($departments)],
             'job_title' => $this->faker->jobTitle(),
-            'location_id' => $this->faker->numberBetween(1, 4),
+            'location_id' => $this->faker->numberBetween(1, 14),
             'desk' => 'Desk ' . $this->faker->randomNumber(2),
             'state' => $this->faker->numberBetween(0, 1),
             'type' => $types[array_rand($types)],

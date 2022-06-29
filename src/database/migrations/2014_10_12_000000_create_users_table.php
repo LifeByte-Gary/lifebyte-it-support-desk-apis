@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('company');
             $table->string('department');
             $table->string('job_title');
             $table->integer('location_id');

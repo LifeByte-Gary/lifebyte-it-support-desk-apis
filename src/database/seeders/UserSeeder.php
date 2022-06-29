@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Gary Zhang',
             'email' => 'gary@lifebyte.io',
+            'company' => 'LifeByte',
             'department' => 'IT Support',
             'job_title' => 'IT',
             'location_id' => 1,
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Aaron Dai',
             'email' => 'aaron@lifebyte.io',
+            'company' => 'LifeByte',
             'department' => 'IT Support',
             'job_title' => 'IT',
             'location_id' => 1,
