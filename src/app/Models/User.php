@@ -18,7 +18,7 @@ class User extends Authenticatable
         'password',
         'department',
         'job_title',
-        'office_id',
+        'location_id',
         'desk',
         'state',
         'type',

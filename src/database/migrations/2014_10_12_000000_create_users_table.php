@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('password');
             $table->string('department');
             $table->string('job_title');
-            $table->integer('office_id');
+            $table->integer('location_id');
             $table->string('desk');
             $table->tinyInteger('state')->default(1);
             $table->string('type')->default('employee');

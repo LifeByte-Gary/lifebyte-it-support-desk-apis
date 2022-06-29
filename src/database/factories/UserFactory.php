@@ -28,7 +28,7 @@ class UserFactory extends Factory
         $types = [
             'Employee',
             'Storage',
-            'Boardroom',
+            'Meeting Room',
             'Others'
         ];
 
@@ -37,7 +37,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'department' => $departments[array_rand($departments)],
             'job_title' => $this->faker->jobTitle(),
-            'office_id' => $this->faker->numberBetween(0, 4),
+            'location_id' => $this->faker->numberBetween(1, 4),
             'desk' => 'Desk ' . $this->faker->randomNumber(2),
             'state' => $this->faker->numberBetween(0, 1),
             'type' => $types[array_rand($types)],
