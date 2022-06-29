@@ -19,6 +19,7 @@ class UserUpdateRequest extends FormRequest
             'email' => ['required', 'email'],
             'department' => ['nullable', 'string'],
             'job_title' => ['nullable', 'string'],
+            'desk' => ['nullable', 'string'],
             'company' => ['string'],
             'location.id' => ['required', Rule::exists('locations', 'id')],
             'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],

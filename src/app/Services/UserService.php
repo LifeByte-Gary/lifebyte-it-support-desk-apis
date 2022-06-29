@@ -44,6 +44,7 @@ class UserService
     public function createAUser(UserCreateRequest $request): Model|User
     {
         $input = $request->all();
+        $input['location_id'] = $request->input('location')['id'];
         $input['password'] = Hash::make($input['password']);
 
         return User::create($input);

@@ -20,11 +20,20 @@ class UserCreateRequest extends FormRequest
             'email' => ['required', Rule::unique(User::class, 'email'), 'email'],
             'department' => ['nullable', 'string'],
             'job_title' => ['nullable', 'string'],
-            'location_office' => ['nullable', 'string'],
-            'location_position' => ['nullable', 'string'],
-            'state' => ['required', 'numeric'],
-            'is_admin' => ['required', 'boolean'],
+            'desk' => ['nullable', 'string'],
+            'company' => ['string'],
+            'location.id' => ['required', Rule::exists('locations', 'id')],
+            'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
+            'state' => ['required', 'numeric', 'min:0', 'max:1'],
+            'permission_level' => ['required', 'numeric', 'min:0', $this->user()->isSuperAdmin() ? 'max:2' : 'max:0'],
             'password' => ['required', 'alpha_num']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'permission_level.max' => 'Only an IT manager can create a user with high permission level.'
         ];
     }
 }

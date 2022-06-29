@@ -13,10 +13,10 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('password');
             $table->string('company');
-            $table->string('department');
-            $table->string('job_title');
+            $table->string('department')->nullable();
+            $table->string('job_title')->nullable();
             $table->integer('location_id');
-            $table->string('desk');
+            $table->string('desk')->nullable();
             $table->tinyInteger('state')->default(1);
             $table->string('type')->default('employee');
             $table->integer('permission_level')->default(0);
