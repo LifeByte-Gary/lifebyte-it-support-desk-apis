@@ -36,22 +36,23 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    /**
-     * Attempt to authenticate the request's credentials.
-     *
-     * @return void
-     *
-     * @throws ValidationException
-     */
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt([
-            'email' => $this->string('email'),
-            'password' => $this->string('password'),
-            'is_admin' => 1
-        ], $this->boolean('remember'))) {
+        $isAuthenticated = Auth::attempt([
+                'email' => $this->string('email'),
+                'password' => $this->string('password'),
+                'permission_level' => 1
+            ], $this->boolean('remember'))
+            ||
+            Auth::attempt([
+                'email' => $this->string('email'),
+                'password' => $this->string('password'),
+                'permission_level' => 2
+            ], $this->boolean('remember'));
+
+        if (!$isAuthenticated) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

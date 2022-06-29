@@ -8,6 +8,7 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
 class UserService
@@ -40,7 +41,7 @@ class UserService
         return new UserCollection($this->userRepository->all());
     }
 
-    public function createAUser(UserCreateRequest $request)
+    public function createAUser(UserCreateRequest $request): Model|User
     {
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);

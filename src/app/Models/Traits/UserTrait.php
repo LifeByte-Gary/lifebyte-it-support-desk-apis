@@ -6,6 +6,6 @@ trait UserTrait
 {
     public function isAdmin(): bool
     {
-        return $this->getAttribute('is_admin') && $this->getAttribute('state');
+        return $this->getAttribute('permission_level') > 0 && $this->getAttribute('state');
     }
 }

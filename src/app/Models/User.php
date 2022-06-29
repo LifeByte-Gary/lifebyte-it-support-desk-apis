@@ -18,10 +18,11 @@ class User extends Authenticatable
         'password',
         'department',
         'job_title',
-        'location_office',
-        'location_position',
+        'office_id',
+        'desk',
         'state',
-        'is_admin'
+        'type',
+        'permission_level'
     ];
 
     protected $hidden = [

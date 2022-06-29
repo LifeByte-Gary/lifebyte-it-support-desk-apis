@@ -25,15 +25,23 @@ class UserFactory extends Factory
             'Risk'
         ];
 
+        $types = [
+            'Employee',
+            'Storage',
+            'Boardroom',
+            'Others'
+        ];
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'department' => $departments[array_rand($departments)],
             'job_title' => $this->faker->jobTitle(),
-            'location_office' => '55C',
-            'location_position' => 'Table ' . $this->faker->unique()->randomNumber(),
+            'office_id' => $this->faker->numberBetween(0, 4),
+            'desk' => 'Desk ' . $this->faker->randomNumber(2),
             'state' => $this->faker->numberBetween(0, 1),
-            'is_admin' => false,
+            'type' => $types[array_rand($types)],
+            'permission_level' => 0,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
