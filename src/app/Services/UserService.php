@@ -53,12 +53,17 @@ class UserService
     {
         $user->name = $request->input('name') ?: $user->name;
         $user->email = $request->input('email') ?: $user->email;
+        $user->company = $request->input('company') ?: $user->company;
+        $user->desk = $request->input('desk') ?: $user->desk;
         $user->department = $request->input('department') ?: $user->department;
         $user->job_title = $request->input('job_title') ?: $user->job_title;
-        $user->location_office = $request->input('location_office') ?: $user->location_office;
-        $user->location_position = $request->input('location_position') ?: $user->location_position;
+        $user->type = $request->input('type') ?: $user->type;
+        $user->location_id = $request->input('location')['id'] ?: $user->location_id;
         $user->state = $request->input('state') ?: $user->state;
-        $user->is_admin = $request->input('is_admin') ?: $user->is_admin;
+
+        if ($request->user()->isSuperAdmin()) {
+            $user->permission_level = $request->input('permission_level') ?: $user->permission_level;
+        }
 
         $user->save();
     }

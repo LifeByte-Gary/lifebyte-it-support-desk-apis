@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -18,10 +19,11 @@ class UserUpdateRequest extends FormRequest
             'email' => ['required', 'email'],
             'department' => ['nullable', 'string'],
             'job_title' => ['nullable', 'string'],
-            'location_office' => ['nullable', 'string'],
-            'location_position' => ['nullable', 'string'],
-            'state' => ['required', 'numeric'],
-            'is_admin' => ['required', 'boolean'],
+            'company' => ['string'],
+            'location.id' => ['required', Rule::exists('locations', 'id')],
+            'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
+            'state' => ['required', 'numeric', 'min:0', 'max:1'],
+            'permission_level' => ['required', 'numeric', 'min:0', 'max:2'],
         ];
     }
 }

@@ -12,6 +12,11 @@ trait UserTrait
         return $this->getAttribute('permission_level') > 0 && $this->getAttribute('state');
     }
 
+    public function isSuperAdmin(): bool
+    {
+        return $this->getAttribute('permission_level') > 1 && $this->getAttribute('state');
+    }
+
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);

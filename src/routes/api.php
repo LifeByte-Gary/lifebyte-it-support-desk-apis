@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,13 @@ Route::prefix('v1')
 
         Route::middleware(['auth'])
             ->group(function () {
+                // User routes
                 Route::get('/users', [UserController::class, 'index'])->name('users.index');
                 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
                 Route::post('/users', [UserController::class, 'store'])->name('users.store');
                 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+                // Location routes
+                Route::get('locations', [LocationController::class, 'index'])->name('locations.index');
             });
     });
