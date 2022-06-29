@@ -12,6 +12,17 @@
 
 namespace App\Models{
 /**
+ * App\Models\Location
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Location newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Location newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Location query()
+ */
+	class Location extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
