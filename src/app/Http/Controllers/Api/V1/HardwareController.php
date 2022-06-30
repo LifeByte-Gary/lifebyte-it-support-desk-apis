@@ -20,7 +20,11 @@ class HardwareController extends Controller
     {
         $query = $request->query();
 
-        return $this->hardwareService->getAllHardware();
+        if (!count($query)) {
+            return $this->hardwareService->getAllHardware();
+        }
+
+        return $this->hardwareService->filterHardware($query);
     }
 
     public function store(Request $request): void

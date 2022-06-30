@@ -19,4 +19,9 @@ class HardwareService
     {
         return HardwareResource::collection($this->hardwareRepository->all());
     }
+
+    public function filterHardware(array $filter): ResourceCollection
+    {
+        return HardwareResource::collection($this->hardwareRepository->filter($filter));
+    }
 }
