@@ -10,7 +10,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             LocationSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            HardwareSeeder::class
         ]);
     }
 }

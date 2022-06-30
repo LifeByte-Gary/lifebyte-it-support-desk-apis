@@ -40,13 +40,13 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'company' => $companies[array_rand($companies)],
-            'department' => $departments[array_rand($departments)],
+            'company' => $this->faker->randomElement($companies),
+            'department' => $this->faker->randomElement($departments),
             'job_title' => $this->faker->jobTitle(),
             'location_id' => $this->faker->numberBetween(1, 14),
             'desk' => 'Desk ' . $this->faker->randomNumber(2),
             'state' => $this->faker->numberBetween(0, 1),
-            'type' => $types[array_rand($types)],
+            'type' => $this->faker->randomElement($types),
             'permission_level' => 0,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

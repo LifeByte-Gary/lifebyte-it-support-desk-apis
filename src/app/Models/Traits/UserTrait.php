@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use App\Models\Hardware;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -20,5 +21,10 @@ trait UserTrait
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function hardware()
+    {
+        return $this->hasMany(Hardware::class);
     }
 }
