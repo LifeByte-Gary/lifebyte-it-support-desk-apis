@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\HardwareController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
@@ -36,5 +37,8 @@ Route::prefix('v1')
 
                 // Location routes
                 Route::get('locations', [LocationController::class, 'index'])->name('locations.index');
+
+                // Hardware routes
+                Route::get('hardware', [HardwareController::class, 'index'])->name('hardware.index');
             });
     });

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserController extends Controller
 {
@@ -19,7 +19,7 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function index(Request $request): UserCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
         $query = $request->query();
 
@@ -34,7 +34,7 @@ class UserController extends Controller
         return $this->userService->getAllUsers();
     }
 
-    public function show(Request $request, $id): UserResource
+    public function show($id): UserResource
     {
         return $this->userService->findAUserById($id);
     }

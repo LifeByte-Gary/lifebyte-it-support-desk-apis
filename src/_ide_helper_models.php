@@ -12,6 +12,61 @@
 
 namespace App\Models{
 /**
+ * App\Models\Hardware
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $name
+ * @property string|null $description
+ * @property string $type
+ * @property string $brand
+ * @property string $serial_number
+ * @property string $tag
+ * @property string|null $spec_os
+ * @property string|null $spec_cpu
+ * @property int|null $spec_memory
+ * @property string|null $spec_screen_size
+ * @property array|null $spec_ports
+ * @property string|null $spec_adapter_input
+ * @property array|null $spec_adapter_output
+ * @property int|null $spec_cable_length
+ * @property string|null $spec_others
+ * @property array|null $together
+ * @property string|null $note
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Database\Factories\HardwareFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereBrand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereNote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSerialNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecAdapterInput($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecAdapterOutput($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecCableLength($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecCpu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecMemory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecOs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecOthers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecPorts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecScreenSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereTag($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereTogether($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereUserId($value)
+ */
+	class Hardware extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Location
  *
  * @property int $id
@@ -38,10 +93,10 @@ namespace App\Models{
  * @property string $email
  * @property string $password
  * @property string $company
- * @property string $department
- * @property string $job_title
+ * @property string|null $department
+ * @property string|null $job_title
  * @property int $location_id
- * @property string $desk
+ * @property string|null $desk
  * @property int $state
  * @property string $type
  * @property int $permission_level
@@ -49,6 +104,8 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Hardware[] $hardware
+ * @property-read int|null $hardware_count
  * @property-read \App\Models\Location|null $location
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
