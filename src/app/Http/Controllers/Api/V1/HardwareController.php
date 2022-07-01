@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\HardwareUpdateRequest;
 use App\Http\Resources\HardwareResource;
 use App\Models\Hardware;
 use App\Services\HardwareService;
@@ -30,7 +31,7 @@ class HardwareController extends Controller
 
     public function store(Request $request): void
     {
-        //
+        // TODO
     }
 
     public function show($id): HardwareResource
@@ -39,9 +40,11 @@ class HardwareController extends Controller
     }
 
 
-    public function update(Request $request, Hardware $hardware): void
+    public function update(HardwareUpdateRequest $request, Hardware $hardware)
     {
-        //
+        $this->hardwareService->updateAHardware($request, $hardware);
+
+        return response(null, 204);
     }
 
     public function destroy(Hardware $hardware): void

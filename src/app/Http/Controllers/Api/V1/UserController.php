@@ -23,11 +23,13 @@ class UserController extends Controller
     {
         $query = $request->query();
 
-        if (array_key_exists('email', $query)) {
-            return $this->userService->getAllUsers();
+        $pagination = !(isset($query['pagination']) && $query['pagination'] === 'false');
+
+        if (!$pagination) {
+            return $this->userService->getAllUsers(false);
         }
 
-        if (array_key_exists('name', $query)) {
+        if (isset($query['name'])) {
             return $this->userService->fuzzySearchUsersByName($query['name']);
         }
 

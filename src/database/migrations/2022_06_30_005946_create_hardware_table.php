@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('spec_os')->nullable();
             $table->string('spec_cpu')->nullable();
             $table->integer('spec_memory')->nullable();
-            $table->string('spec_screen_size')->nullable();
+            $table->integer('spec_screen_size')->nullable();
             $table->json('spec_ports')->nullable();
             $table->string('spec_adapter_input')->nullable();
             $table->json('spec_adapter_output')->nullable();

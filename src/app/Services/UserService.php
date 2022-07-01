@@ -20,9 +20,9 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function getAllUsers(): AnonymousResourceCollection
+    public function getAllUsers(bool $pagination = true): AnonymousResourceCollection
     {
-        return UserResource::collection($this->userRepository->all());
+        return UserResource::collection($this->userRepository->all($pagination));
     }
 
     public function findAUserById($id): UserResource

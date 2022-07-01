@@ -15,16 +15,16 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email'],
+            'name' => ['string'],
+            'email' => ['email'],
             'department' => ['nullable', 'string'],
             'job_title' => ['nullable', 'string'],
             'desk' => ['nullable', 'string'],
             'company' => ['string'],
-            'location.id' => ['required', Rule::exists('locations', 'id')],
-            'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
-            'state' => ['required', 'numeric', 'min:0', 'max:1'],
-            'permission_level' => ['required', 'numeric', 'min:0', 'max:2'],
+            'location.id' => [Rule::exists('locations', 'id')],
+            'type' => [Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
+            'state' => ['numeric', 'min:0', 'max:1'],
+            'permission_level' => ['numeric', 'min:0', 'max:2'],
         ];
     }
 }
