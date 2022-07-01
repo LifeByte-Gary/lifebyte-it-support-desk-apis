@@ -36,7 +36,7 @@ class HardwareService
     {
         // Update basic information.
         $hardware->name = $request->input('name') ?: $hardware->name;
-        $hardware->description = $request->input('description') ?: $hardware->description;
+        $hardware->description = $request->has('description') ? $request->input('description') : $hardware->description;
         $hardware->type = $request->input('type') ?: $hardware->type;
         $hardware->brand = $request->input('brand') ?: $hardware->brand;
         $hardware->serial_number = $request->input('serial_number') ?: $hardware->serial_number;
