@@ -107,14 +107,14 @@ class HardwareService
 
             case 'Others':
             default:
-                $hardware->spec_os = $request->input('spec_os') ?: $hardware->spec_os;
-                $hardware->spec_cpu = $request->input('spec_cpu') ?: $hardware->spec_cpu;
-                $hardware->spec_memory = $request->input('spec_memory') ?: $hardware->spec_memory;
-                $hardware->spec_screen_size = $request->input('spec_screen_size') ?: $hardware->spec_screen_size;
-                $hardware->spec_ports = $request->input('spec_ports') ?: $hardware->spec_ports;
-                $hardware->spec_adapter_input = $request->input('spec_adapter_input') ?: $hardware->spec_adapter_input;
-                $hardware->spec_adapter_output = $request->input('spec_adapter_output') ?: $hardware->spec_adapter_output;
-                $hardware->spec_cable_length = $request->input('spec_cable_length') ?: $hardware->spec_cable_length;
+                $hardware->spec_os = $request->has('spec_os') ? $request->input('spec_os') : $hardware->spec_os;
+                $hardware->spec_cpu = $request->has('spec_cpu') ? $request->input('spec_cpu') : $hardware->spec_cpu;
+                $hardware->spec_memory = $request->has('spec_memory') ? $request->input('spec_memory') : $hardware->spec_memory;
+                $hardware->spec_screen_size = $request->has('spec_screen_size') ? $request->input('spec_screen_size') : $hardware->spec_screen_size;
+                $hardware->spec_ports = $request->has('spec_ports') ? $request->input('spec_ports') : $hardware->spec_ports;
+                $hardware->spec_adapter_input = $request->has('spec_adapter_input') ? $request->input('spec_adapter_input') : $hardware->spec_adapter_input;
+                $hardware->spec_adapter_output = $request->has('spec_adapter_output') ? $request->input('spec_adapter_output') : $hardware->spec_adapter_output;
+                $hardware->spec_cable_length = $request->has('spec_cable_length') ? $request->input('spec_cable_length') : $hardware->spec_cable_length;
                 break;
         }
 
