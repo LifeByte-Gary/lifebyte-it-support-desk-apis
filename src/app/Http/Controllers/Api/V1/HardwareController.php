@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Resources\HardwareResource;
 use App\Models\Hardware;
 use App\Services\HardwareService;
 use Illuminate\Http\Request;
@@ -32,9 +33,9 @@ class HardwareController extends Controller
         //
     }
 
-    public function show(Hardware $hardware): void
+    public function show($id): HardwareResource
     {
-        //
+        return $this->hardwareService->findAUserById($id);
     }
 
 

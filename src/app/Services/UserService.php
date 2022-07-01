@@ -27,9 +27,7 @@ class UserService
 
     public function findAUserById($id): UserResource
     {
-        $user = User::findOrFail($id);
-
-        return new UserResource($user);
+        return new UserResource(User::findOrFail($id));
     }
 
     public function fuzzySearchUsersByName(string|null $name): AnonymousResourceCollection

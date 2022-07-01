@@ -36,9 +36,10 @@ Route::prefix('v1')
                 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
                 // Location routes
-                Route::get('locations', [LocationController::class, 'index'])->name('locations.index');
+                Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
 
                 // Hardware routes
-                Route::get('hardware', [HardwareController::class, 'index'])->name('hardware.index');
+                Route::get('/hardware', [HardwareController::class, 'index'])->name('hardware.index');
+                Route::get('/hardware/{id}', [HardwareController::class, 'show'])->name('hardware.show');
             });
     });
