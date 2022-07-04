@@ -21,8 +21,6 @@ Route::prefix('v1')
     ->name('api.v1.')
     ->namespace('App\Http\Controllers\Api\V1')
     ->group(function () {
-        require __DIR__ . '/auth.php';
-
         Route::get('/user', static function (Request $request) {
             return $request->user();
         })->name('auth.user');
