@@ -8,6 +8,8 @@ use JsonSerializable;
 
 class UserResource extends JsonResource
 {
+    public static $wrap = 'data';
+
     public function toArray($request): array|JsonSerializable|Arrayable
     {
         return [

@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -13,27 +14,19 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class UserController extends Controller
 {
     private UserService $userService;
+    private UserRepository $userRepository;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, UserRepository $userRepository)
     {
         $this->userService = $userService;
+        $this->userRepository = $userRepository;
     }
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $query = $request->query();
+        $filter = $request->query();
 
-        $pagination = !(isset($query['pagination']) && $query['pagination'] === 'false');
-
-        if (!$pagination) {
-            return $this->userService->getAllUsers(false);
-        }
-
-        if (isset($query['name'])) {
-            return $this->userService->fuzzySearchUsersByName($query['name']);
-        }
-
-        return $this->userService->getAllUsers();
+        return UserResource::collection($this->userRepository->findUsers($filter));
     }
 
     public function show($id): UserResource
