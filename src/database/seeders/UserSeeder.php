@@ -9,15 +9,31 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Set the first user profile for the ease of testing.
+        // Set users for the ease of testing.
         User::factory()->create([
             'name' => 'Gary Zhang',
-            'email' => 'gary.zhang@lifebyte.io',
+            'email' => 'gary@lifebyte.io',
+            'company' => 'LifeByte',
             'department' => 'IT Support',
             'job_title' => 'IT',
-            'location_position' => 'Table 0',
+            'location_id' => 1,
+            'desk' => 'Desk 1',
             'state' => 1,
-            'is_admin' => true,
+            'type' => 'Employee',
+            'permission_level' => 2
+        ]);
+
+        User::factory()->create([
+            'name' => 'Aaron Dai',
+            'email' => 'aaron@lifebyte.io',
+            'company' => 'LifeByte',
+            'department' => 'IT Support',
+            'job_title' => 'IT',
+            'location_id' => 1,
+            'desk' => 'Desk 2',
+            'state' => 1,
+            'type' => 'Employee',
+            'permission_level' => 1
         ]);
 
         User::factory(100)

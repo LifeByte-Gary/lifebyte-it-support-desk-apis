@@ -2,10 +2,12 @@
 
 namespace App\Interfaces;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface UserInterface
 {
-    public function all(): LengthAwarePaginator;
-    public function fuzzySearchByName(String $name): LengthAwarePaginator;
+    public function all(bool $pagination): Collection|LengthAwarePaginator;
+
+    public function fuzzySearchByName(string $name): LengthAwarePaginator;
 }
