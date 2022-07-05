@@ -28,9 +28,11 @@ Route::prefix('v1')
         Route::middleware(['auth'])
             ->group(function () {
                 // User routes
+                Route::get('/users/import', [UserController::class, 'import'])->name('users.import');
+                Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
                 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-                Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
                 Route::post('/users', [UserController::class, 'store'])->name('users.store');
+                Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
                 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
                 // Location routes
