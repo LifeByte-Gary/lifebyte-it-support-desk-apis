@@ -29,9 +29,9 @@ class UserController extends Controller
         return UserResource::collection($this->userRepository->findUsers($filter));
     }
 
-    public function show($id): UserResource
+    public function show(User $user): UserResource
     {
-        return $this->userService->findAUserById($id);
+        return new UserResource($user);
     }
 
     public function store(UserCreateRequest $request)

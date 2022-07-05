@@ -29,7 +29,7 @@ Route::prefix('v1')
             ->group(function () {
                 // User routes
                 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-                Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+                Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
                 Route::post('/users', [UserController::class, 'store'])->name('users.store');
                 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 

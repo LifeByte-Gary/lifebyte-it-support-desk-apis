@@ -4,41 +4,12 @@ namespace App\Services;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    private UserRepository $userRepository;
-
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    public function getAllUsers(bool $pagination = true): AnonymousResourceCollection
-    {
-        return UserResource::collection($this->userRepository->all($pagination));
-    }
-
-    public function findAUserById($id): UserResource
-    {
-        return new UserResource(User::findOrFail($id));
-    }
-
-    public function fuzzySearchUsersByName(string|null $name): AnonymousResourceCollection
-    {
-        if (isset($name)) {
-            return UserResource::collection($this->userRepository->fuzzySearchByName($name));
-        }
-
-        return UserResource::collection($this->userRepository->all());
-    }
-
     public function createAUser(UserCreateRequest $request): Model|User
     {
         $input = $request->all();
