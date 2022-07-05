@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\Interfaces\UserInterface;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserRepository implements UserInterface
@@ -15,22 +17,35 @@ class UserRepository implements UserInterface
         $email = $filter['email'] ?? null;
         $department = $filter['department'] ?? null;
         $jobTitle = $filter['job_title'] ?? null;
+        $company = $filter['company'] ?? null;
+        $type = $filter['type'] ?? null;
         $locationId = $filter['location_id'] ?? null;
         $state = isset($filter['state']) ? (int)$filter['state'] : null;
         $permissionLevel = isset($filter['permission_level']) ? (int)$filter['permission_level'] : null;
         $paginate = !(isset($filter['paginate']) && $filter['paginate'] === 'false');
 
-        $query = User::when($name, static function ($query, $name) {
-            $query->where('name', 'like', "%$name%");
-        })->when($email, static function ($query, $email) {
-            $query->where('email', 'like', "%$email%");
-        })->when($department, function ($query, $department) {
-            $query->where('department', $department);
-        })->when($jobTitle, function ($query, $jobTitle) {
-            $query->where('job_title', 'like', "%$jobTitle%");
-        })->when($locationId, function ($query, $locationId) {
-            $query->where('location_id', $locationId);
-        });
+        $query = User::with('location')
+            ->when($name, static function ($query, $name) {
+                $query->where('name', 'like', "%$name%");
+            })
+            ->when($email, static function ($query, $email) {
+                $query->where('email', 'like', "%$email%");
+            })
+            ->when($department, function ($query, $department) {
+                $query->where('department', $department);
+            })
+            ->when($jobTitle, function ($query, $jobTitle) {
+                $query->where('job_title', 'like', "%$jobTitle%");
+            })
+            ->when($company, function ($query, $company) {
+                $query->where('company', 'like', "%$company%");
+            })
+            ->when($locationId, function ($query, $locationId) {
+                $query->where('location_id', $locationId);
+            })
+            ->when($type, function ($query, $type) {
+                $query->where('type', $type);
+            });
 
         if (isset($state)) {
             $query->where('state', $state);
@@ -41,5 +56,10 @@ class UserRepository implements UserInterface
         }
 
         return $paginate ? $query->paginate() : $query->get();
+    }
+
+    public function findAUserById(string $id): Model|Collection|Builder|array|null
+    {
+        return User::with('location')->findOrFail($id);
     }
 }

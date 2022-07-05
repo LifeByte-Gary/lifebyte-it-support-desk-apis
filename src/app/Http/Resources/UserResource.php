@@ -6,10 +6,22 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
+/**
+ * @property mixed $id
+ * @property mixed $name
+ * @property mixed $email
+ * @property mixed $company
+ * @property mixed $department
+ * @property mixed $updated_at
+ * @property mixed $created_at
+ * @property mixed $permission_level
+ * @property mixed $type
+ * @property mixed $state
+ * @property mixed $desk
+ * @property mixed $job_title
+ */
 class UserResource extends JsonResource
 {
-    public static $wrap = 'data';
-
     public function toArray($request): array|JsonSerializable|Arrayable
     {
         return [
@@ -19,7 +31,7 @@ class UserResource extends JsonResource
             'company' => $this->company,
             'department' => $this->department,
             'job_title' => $this->job_title,
-            'location' => $this->location,
+            'location' => new LocationResource($this->whenLoaded('location')),
             'desk' => $this->desk,
             'state' => $this->state,
             'type' => $this->type,
