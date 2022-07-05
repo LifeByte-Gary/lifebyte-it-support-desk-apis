@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
+use App\Interfaces\LocationInterface;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Collection;
 
-class LocationService
+class LocationRepository implements LocationInterface
 {
     public function getAllLocations(): Collection
     {

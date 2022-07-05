@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Services\LocationService;
-use Illuminate\Database\Eloquent\Collection;
+use App\Http\Resources\LocationResource;
+use App\Repositories\LocationRepository;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class LocationController extends Controller
 {
-    private LocationService $locationService;
+    private LocationRepository $locationRepository;
 
-    public function __construct(LocationService $locationService)
+    public function __construct(LocationRepository $locationRepository)
     {
-        $this->locationService = $locationService;
+        $this->locationRepository = $locationRepository;
     }
 
-    public function index(): Collection
+    public function index(): AnonymousResourceCollection
     {
-        return $this->locationService->getAllLocations();
+        return LocationResource::collection($this->locationRepository->getAllLocations());
     }
 }
