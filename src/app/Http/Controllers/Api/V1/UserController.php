@@ -34,11 +34,11 @@ class UserController extends Controller
         return new UserResource($this->userRepository->findAUserById($id));
     }
 
-    public function store(UserCreateRequest $request)
+    public function store(UserCreateRequest $request): UserResource
     {
-        $newUser = $this->userService->createAUser($request);
+        $newUser = $this->userRepository->createAUser($request);
 
-        return response($newUser);
+        return $this->show($newUser->id);
     }
 
     public function update(UserUpdateRequest $request, User $user)

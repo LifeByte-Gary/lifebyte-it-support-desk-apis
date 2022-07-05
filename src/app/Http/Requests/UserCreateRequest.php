@@ -26,7 +26,6 @@ class UserCreateRequest extends FormRequest
             'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
             'state' => ['required', 'numeric', 'min:0', 'max:1'],
             'permission_level' => ['required', 'numeric', 'min:0', $this->user()->isSuperAdmin() ? 'max:2' : 'max:0'],
-            'password' => ['required', 'alpha_num']
         ];
     }
 

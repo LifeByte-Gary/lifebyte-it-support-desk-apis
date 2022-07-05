@@ -23,7 +23,7 @@ class User extends Authenticatable
         'desk',
         'state',
         'type',
-        'permission_level'
+        'permission_level',
     ];
 
     protected $hidden = [

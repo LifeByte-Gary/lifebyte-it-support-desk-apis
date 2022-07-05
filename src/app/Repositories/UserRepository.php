@@ -2,12 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\UserCreateRequest;
 use App\Interfaces\UserInterface;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserInterface
 {
@@ -61,5 +63,24 @@ class UserRepository implements UserInterface
     public function findAUserById(string $id): Model|Collection|Builder|array|null
     {
         return User::with('location')->findOrFail($id);
+    }
+
+    public function createAUser(UserCreateRequest $request): User
+    {
+        $user = $request->all();
+
+        return User::create([
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'department' => $user['department'] ?? null,
+            'job_title' => $user['job_title'] ?? null,
+            'company' => $user['company']?? null,
+            'desk' => $user['desk'] ?? null,
+            'location_id' => $user['location']['id'],
+            'state' => $user['state'],
+            'type' => $user['type'],
+            'password' => Hash::make('password'),
+            'permission_level' => $user['permission_level']
+        ]);
     }
 }
