@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Interfaces\UserInterface;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -74,7 +75,7 @@ class UserRepository implements UserInterface
             'email' => $user['email'],
             'department' => $user['department'] ?? null,
             'job_title' => $user['job_title'] ?? null,
-            'company' => $user['company']?? null,
+            'company' => $user['company'] ?? null,
             'desk' => $user['desk'] ?? null,
             'location_id' => $user['location']['id'],
             'state' => $user['state'],
@@ -82,5 +83,21 @@ class UserRepository implements UserInterface
             'password' => Hash::make('password'),
             'permission_level' => $user['permission_level']
         ]);
+    }
+
+    public function updateAUser(UserUpdateRequest $request, User $user): void
+    {
+        $user->name = $request->input('name') ?? $user->name;
+        $user->email = $request->input('email') ?? $user->email;
+        $user->company = $request->input('company') ?? $user->company;
+        $user->department = array_key_exists('department', $request->input()) ? $request->input('department') : $user->department;
+        $user->job_title = array_key_exists('job_title', $request->input()) ? $request->input('job_title') : $user->job_title;
+        $user->desk = array_key_exists('desk', $request->input()) ? $request->input('desk') : $user->desk;
+        $user->location_id = $request->input('location')['id'] ?? $user->location_id;
+        $user->type = $request->input('type') ?? $user->type;
+        $user->state = $request->input('state') ?? $user->state;
+        $user->permission_level = $request->input('permission_level') ?? $user->permission_level;
+
+        $user->save();
     }
 }

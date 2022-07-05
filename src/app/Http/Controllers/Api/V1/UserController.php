@@ -7,18 +7,15 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
-use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserController extends Controller
 {
-    private UserService $userService;
     private UserRepository $userRepository;
 
-    public function __construct(UserService $userService, UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->userService = $userService;
         $this->userRepository = $userRepository;
     }
 
@@ -36,14 +33,12 @@ class UserController extends Controller
 
     public function store(UserCreateRequest $request): UserResource
     {
-        $newUser = $this->userRepository->createAUser($request);
-
-        return $this->show($newUser->id);
+        return new UserResource($this->userRepository->createAUser($request));
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        $this->userService->updateAUser($request, $user);
+        $this->userRepository->updateAUser($request, $user);
 
         return response(null, 204);
     }

@@ -21,7 +21,7 @@ class UserCreateRequest extends FormRequest
             'department' => ['nullable', 'string'],
             'job_title' => ['nullable', 'string'],
             'desk' => ['nullable', 'string'],
-            'company' => ['string'],
+            'company' => ['required', 'string'],
             'location.id' => ['required', Rule::exists('locations', 'id')],
             'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
             'state' => ['required', 'numeric', 'min:0', 'max:1'],
