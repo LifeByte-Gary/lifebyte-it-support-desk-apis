@@ -2,11 +2,10 @@
 
 namespace App\Interfaces;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface HardwareInterface
 {
-    public function all(): LengthAwarePaginator;
-
-    public function filter(array $filter): LengthAwarePaginator;
+    public function findHardware(array $filter): Collection|array|LengthAwarePaginator;
 }

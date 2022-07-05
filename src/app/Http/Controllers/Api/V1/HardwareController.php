@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\HardwareUpdateRequest;
 use App\Http\Resources\HardwareResource;
 use App\Models\Hardware;
+use App\Repositories\HardwareRepository;
 use App\Services\HardwareService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -12,21 +13,19 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class HardwareController extends Controller
 {
     private HardwareService $hardwareService;
+    private HardwareRepository $hardwareRepository;
 
-    public function __construct(HardwareService $hardwareService)
+    public function __construct(HardwareService $hardwareService, HardwareRepository $hardwareRepository)
     {
         $this->hardwareService = $hardwareService;
+        $this->hardwareRepository = $hardwareRepository;
     }
 
     public function index(Request $request): ResourceCollection
     {
-        $query = $request->query();
+        $filter = $request->query();
 
-        if (!count($query)) {
-            return $this->hardwareService->getAllHardware();
-        }
-
-        return $this->hardwareService->filterHardware($query);
+        return HardwareResource::collection($this->hardwareRepository->findHardware($filter));
     }
 
     public function store(Request $request): void
