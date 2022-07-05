@@ -18,12 +18,12 @@ return new class extends Migration {
             $table->string('tag');
             $table->string('spec_os')->nullable();
             $table->string('spec_cpu')->nullable();
-            $table->integer('spec_memory')->nullable();
-            $table->integer('spec_screen_size')->nullable();
+            $table->double('spec_memory')->nullable();
+            $table->double('spec_screen_size')->nullable();
             $table->json('spec_ports')->nullable();
             $table->string('spec_adapter_input')->nullable();
             $table->json('spec_adapter_output')->nullable();
-            $table->integer('spec_cable_length')->nullable();
+            $table->double('spec_cable_length')->nullable();
             $table->text('spec_others')->nullable();
             $table->json('together')->nullable();
             $table->text('note')->nullable();

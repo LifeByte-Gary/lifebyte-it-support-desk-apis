@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\Interfaces\HardwareInterface;
 use App\Models\Hardware;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class HardwareRepository implements HardwareInterface
@@ -36,5 +38,10 @@ class HardwareRepository implements HardwareInterface
             });
 
         return $paginate ? $query->paginate() : $query->get();
+    }
+
+    public function findAHardwareById(string $id): Model|Collection|Builder|array|null
+    {
+        return Hardware::with('user')->findOrFail($id);
     }
 }

@@ -33,9 +33,9 @@ class HardwareController extends Controller
         // TODO
     }
 
-    public function show($id): HardwareResource
+    public function show(string $id): HardwareResource
     {
-        return $this->hardwareService->findAUserById($id);
+        return new HardwareResource($this->hardwareRepository->findAHardwareById($id));
     }
 
 
