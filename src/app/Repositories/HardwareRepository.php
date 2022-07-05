@@ -42,6 +42,6 @@ class HardwareRepository implements HardwareInterface
 
     public function findAHardwareById(string $id): Model|Collection|Builder|array|null
     {
-        return Hardware::with('user')->findOrFail($id);
+        return Hardware::findOrFail($id)->loadMissing('user');
     }
 }
