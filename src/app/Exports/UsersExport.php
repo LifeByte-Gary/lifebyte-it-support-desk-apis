@@ -19,16 +19,16 @@ class UsersExport implements FromCollection, WithMapping, WithHeadings, ShouldAu
     public function map($row): array
     {
         return [
-            $row->id,
             $row->name,
             $row->email,
+            $row->type,
+            $row->company,
+            $row->location->country,
             $row->department,
             $row->job_title,
-            $row->company,
             $row->location->name,
-            $row->location->country,
             $row->desk,
-            $row->type,
+            $row->location_id,
             ($row->state === 1 ? 'On Job' : 'Left'),
             (string)$row->permission_level,
         ];
@@ -37,18 +37,18 @@ class UsersExport implements FromCollection, WithMapping, WithHeadings, ShouldAu
     public function headings(): array
     {
         return [
-            '#',
             'Name',
             'Email',
+            'Type',
+            'Company',
+            'Country',
             'Department',
             'Job Title',
-            'Company',
             'Office',
-            'Country',
             'Desk',
-            'Type',
+            'Location ID',
             'State',
-            'Permission Level',
+            'Permission Level'
         ];
     }
 }

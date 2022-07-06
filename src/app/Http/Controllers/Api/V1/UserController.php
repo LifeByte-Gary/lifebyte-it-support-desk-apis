@@ -6,6 +6,7 @@ use App\Exports\UsersExport;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
+use App\Imports\UsersImport;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -47,8 +48,13 @@ class UserController extends Controller
         return response(null, 204);
     }
 
-    public function import(): void
+    public function import(Request $request): void
     {
+        try {
+            Excel::import(new UsersImport, $request->file('users_file'));
+        } catch (Exception) {
+            response('Failed to export', 500);
+        }
     }
 
     public function export(): BinaryFileResponse

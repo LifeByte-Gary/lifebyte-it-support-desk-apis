@@ -28,7 +28,7 @@ Route::prefix('v1')
         Route::middleware(['auth'])
             ->group(function () {
                 // User routes
-                Route::get('/users/import', [UserController::class, 'import'])->name('users.import');
+                Route::post('/users/import', [UserController::class, 'import'])->name('users.import');
                 Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
                 Route::get('/users', [UserController::class, 'index'])->name('users.index');
                 Route::post('/users', [UserController::class, 'store'])->name('users.store');
