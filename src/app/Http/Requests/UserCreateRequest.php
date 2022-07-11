@@ -22,7 +22,7 @@ class UserCreateRequest extends FormRequest
             'job_title' => ['nullable', 'string'],
             'desk' => ['nullable', 'string'],
             'company' => ['required', 'string'],
-            'location.id' => ['required', Rule::exists('locations', 'id')],
+            'location_id' => ['required', Rule::exists('locations', 'id')],
             'type' => ['required', Rule::in(['Employee', 'Storage', 'Meeting Room', 'Others'])],
             'state' => ['required', 'numeric', 'min:0', 'max:1'],
             'permission_level' => ['required', 'numeric', 'min:0', $this->user()->isSuperAdmin() ? 'max:2' : 'max:0'],

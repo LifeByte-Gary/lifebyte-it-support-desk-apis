@@ -21,6 +21,7 @@ class UserRepository implements UserInterface
         $department = $filter['department'] ?? null;
         $jobTitle = $filter['job_title'] ?? null;
         $company = $filter['company'] ?? null;
+        $desk = $filter['desk'] ?? null;
         $type = $filter['type'] ?? null;
         $locationId = $filter['location_id'] ?? null;
         $state = isset($filter['state']) ? (int)$filter['state'] : null;
@@ -42,6 +43,9 @@ class UserRepository implements UserInterface
             })
             ->when($company, function ($query, $company) {
                 $query->where('company', 'like', "%$company%");
+            })
+            ->when($desk, function ($query, $desk) {
+                $query->where('desk', 'like', "%$desk%");
             })
             ->when($locationId, function ($query, $locationId) {
                 $query->where('location_id', $locationId);
@@ -77,7 +81,7 @@ class UserRepository implements UserInterface
             'job_title' => $user['job_title'] ?? null,
             'company' => $user['company'] ?? null,
             'desk' => $user['desk'] ?? null,
-            'location_id' => $user['location']['id'],
+            'location_id' => $user['location_id'],
             'state' => $user['state'],
             'type' => $user['type'],
             'password' => Hash::make('password'),
@@ -93,7 +97,7 @@ class UserRepository implements UserInterface
         $user->department = array_key_exists('department', $request->input()) ? $request->input('department') : $user->department;
         $user->job_title = array_key_exists('job_title', $request->input()) ? $request->input('job_title') : $user->job_title;
         $user->desk = array_key_exists('desk', $request->input()) ? $request->input('desk') : $user->desk;
-        $user->location_id = $request->input('location')['id'] ?? $user->location_id;
+        $user->location_id = $request->input('location_id') ?? $user->location_id;
         $user->type = $request->input('type') ?? $user->type;
         $user->state = $request->input('state') ?? $user->state;
         $user->permission_level = $request->input('permission_level') ?? $user->permission_level;
