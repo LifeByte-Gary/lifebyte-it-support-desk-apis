@@ -6,18 +6,15 @@ use App\Http\Requests\HardwareUpdateRequest;
 use App\Http\Resources\HardwareResource;
 use App\Models\Hardware;
 use App\Repositories\HardwareRepository;
-use App\Services\HardwareService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class HardwareController extends Controller
 {
-    private HardwareService $hardwareService;
     private HardwareRepository $hardwareRepository;
 
-    public function __construct(HardwareService $hardwareService, HardwareRepository $hardwareRepository)
+    public function __construct(HardwareRepository $hardwareRepository)
     {
-        $this->hardwareService = $hardwareService;
         $this->hardwareRepository = $hardwareRepository;
     }
 
@@ -41,7 +38,7 @@ class HardwareController extends Controller
 
     public function update(HardwareUpdateRequest $request, Hardware $hardware)
     {
-        $this->hardwareService->updateAHardware($request, $hardware);
+        $this->hardwareRepository->updateHardware($request, $hardware);
 
         return response(null, 204);
     }

@@ -20,18 +20,16 @@ namespace App\Models{
  * @property string|null $description
  * @property string $type
  * @property string $brand
+ * @property string $model
  * @property string $serial_number
  * @property string $tag
  * @property string|null $spec_os
  * @property string|null $spec_cpu
- * @property int|null $spec_memory
- * @property string|null $spec_screen_size
- * @property array|null $spec_ports
- * @property string|null $spec_adapter_input
- * @property array|null $spec_adapter_output
- * @property int|null $spec_cable_length
+ * @property float|null $spec_memory
+ * @property int|null $spec_storage
+ * @property float|null $spec_screen_size
  * @property string|null $spec_others
- * @property array|null $together
+ * @property array|null $bundle_with
  * @property string|null $note
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -41,23 +39,21 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware query()
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereBrand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereBundleWith($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereModel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereNote($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSerialNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecAdapterInput($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecAdapterOutput($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecCableLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecCpu($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecMemory($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecOs($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecOthers($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecPorts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecScreenSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereSpecStorage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereTag($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereTogether($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hardware whereUserId($value)

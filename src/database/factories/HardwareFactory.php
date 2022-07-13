@@ -21,6 +21,7 @@ class HardwareFactory extends Factory
             'Adapter',
             'Docking Station',
             'TV',
+            'Monitor',
             'Phone',
             'Others'
         ];
@@ -39,7 +40,7 @@ class HardwareFactory extends Factory
             'Intel Core i5',
             'Intel Core i7',
         ];
-        
+
         return [
             'user_id' => $this->faker->numberBetween(1, 100),
             'name' => $this->faker->word(),
