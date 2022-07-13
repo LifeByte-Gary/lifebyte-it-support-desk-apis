@@ -16,6 +16,7 @@ class HardwareRepository implements HardwareInterface
         $name = $filter['name'] ?? null;
         $type = $filter['type'] ?? null;
         $brand = $filter['brand'] ?? null;
+        $model = $filter['model'] ?? null;
         $serialNumber = $filter['serial_number'] ?? null;
         $tag = $filter['tag'] ?? null;
         $paginate = !(isset($filter['paginate']) && $filter['paginate'] === 'false');
@@ -29,6 +30,9 @@ class HardwareRepository implements HardwareInterface
             })
             ->when($brand, function ($query, $brand) {
                 $query->where('brand', 'like', "%$brand%");
+            })
+            ->when($model, function ($query, $model) {
+                $query->where('model', 'like', "%$model%");
             })
             ->when($serialNumber, function ($query, $serialNumber) {
                 $query->where('serial_number', 'like', "%$serialNumber%");

@@ -67,7 +67,7 @@ class UserRepository implements UserInterface
 
     public function findAUserById(string $id): Model|Collection|Builder|array|null
     {
-        return User::findOrFail($id)->loadMissing('location');
+        return User::findOrFail($id)->loadMissing(['location', 'hardware']);
     }
 
     public function createAUser(UserCreateRequest $request): User

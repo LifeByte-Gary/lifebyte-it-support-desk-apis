@@ -32,6 +32,7 @@ class UserResource extends JsonResource
             'department' => $this->department,
             'job_title' => $this->job_title,
             'location' => new LocationResource($this->whenLoaded('location')),
+            'hardware' => HardwareResource::collection($this->whenLoaded('hardware')),
             'desk' => $this->desk,
             'state' => $this->state,
             'type' => $this->type,
