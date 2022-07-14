@@ -18,7 +18,7 @@ class HardwareUpdateRequest extends FormRequest
             'user.id' => [Rule::exists('users', 'id')],
             'name' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
-            'type' => [Rule::in('Desktop', 'Laptop', 'Mouse', 'Keyboard', 'Adapter', 'Docking Station', 'TV', 'Phone', 'Others')],
+            'type' => [Rule::in('Desktop', 'Laptop', 'Mouse', 'Keyboard', 'Adapter', 'Docking Station', 'Monitor', 'TV', 'Phone', 'Others')],
             'brand' => ['nullable', 'string'],
             'model' => ['nullable', 'string'],
             'serial_number' => ['nullable', 'string'],
