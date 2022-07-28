@@ -20,6 +20,11 @@ class HardwareRepository implements HardwareInterface
         $model = $filter['model'] ?? null;
         $serialNumber = $filter['serial_number'] ?? null;
         $tag = $filter['tag'] ?? null;
+        $specOs = $filter['spec_os'] ?? null;
+        $specCpu = $filter['spec_cpu'] ?? null;
+        $specMemory = $filter['spec_memory'] ?? null;
+        $specStorage = $filter['spec_storage'] ?? null;
+        $specScreenSize = $filter['spec_screen_size'] ?? null;
         $paginate = !(isset($filter['paginate']) && $filter['paginate'] === 'false');
 
         $query = Hardware::with('user')
@@ -40,6 +45,21 @@ class HardwareRepository implements HardwareInterface
             })
             ->when($tag, function ($query, $tag) {
                 $query->where('tag', 'like', "%$tag%");
+            })
+            ->when($specOs, function ($query, $specOs) {
+                $query->where('spec_os', 'like', "%$specOs%");
+            })
+            ->when($specCpu, function ($query, $specCpu) {
+                $query->where('spec_cpu', 'like', "%$specCpu%");
+            })
+            ->when($specMemory, function ($query, $specMemory) {
+                $query->where('spec_memory', $specMemory);
+            })
+            ->when($specStorage, function ($query, $specStorage) {
+                $query->where('spec_storage', $specStorage);
+            })
+            ->when($specScreenSize, function ($query, $specScreenSize) {
+                $query->where('spec_screen_size', $specScreenSize);
             });
 
         return $paginate ? $query->paginate() : $query->get();
