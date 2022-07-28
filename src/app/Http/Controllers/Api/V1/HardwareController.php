@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\HardwareCreateRequest;
 use App\Http\Requests\HardwareUpdateRequest;
 use App\Http\Resources\HardwareResource;
 use App\Models\Hardware;
@@ -25,9 +26,11 @@ class HardwareController extends Controller
         return HardwareResource::collection($this->hardwareRepository->findHardware($filter));
     }
 
-    public function store(Request $request): void
+    public function store(HardwareCreateRequest $request)
     {
-        // TODO
+        $this->hardwareRepository->createHardware($request);
+
+        return response(null, 204);
     }
 
     public function show(string $id): HardwareResource

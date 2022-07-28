@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\HardwareCreateRequest;
 use App\Http\Requests\HardwareUpdateRequest;
 use App\Interfaces\HardwareInterface;
 use App\Models\Hardware;
@@ -127,5 +128,31 @@ class HardwareRepository implements HardwareInterface
         }
 
         $hardware->save();
+    }
+
+    public function createHardware(HardwareCreateRequest $request): void
+    {
+        $hardware = $request->all();
+
+        foreach ($hardware['ids'] as $id) {
+            Hardware::create([
+                'name' => $hardware['name'],
+                'user_id' => $hardware['user']['id'],
+                'description' => $hardware['description'],
+                'type' => $hardware['type'],
+                'brand' => $hardware['brand'],
+                'model' => $hardware['model'],
+                'serial_number' => $id['serial_number'],
+                'tag' => $id['tag'],
+                'spec_os' => $hardware['spec_os'],
+                'spec_cpu' => $hardware['spec_cpu'],
+                'spec_memory' => $hardware['spec_memory'],
+                'spec_storage' => $hardware['spec_storage'],
+                'spec_screen_size' => $hardware['spec_screen_size'],
+                'spec_others' => $hardware['spec_others'],
+                'bundle_with' => $hardware['bundle_with'],
+                'note' => $hardware['note'],
+            ]);
+        }
     }
 }

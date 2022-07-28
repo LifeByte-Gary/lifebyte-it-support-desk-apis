@@ -40,6 +40,7 @@ Route::prefix('v1')
 
                 // Hardware routes
                 Route::get('/hardware', [HardwareController::class, 'index'])->name('hardware.index');
+                Route::post('/hardware', [HardwareController::class, 'store'])->name('hardware.store');
                 Route::get('/hardware/{id}', [HardwareController::class, 'show'])->name('hardware.show');
                 Route::put('/hardware/{hardware}', [HardwareController::class, 'update'])->name('hardware.update');
             });
