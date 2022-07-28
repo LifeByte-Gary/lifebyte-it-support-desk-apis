@@ -36,9 +36,11 @@ class HardwareFactory extends Factory
             'Apple M1',
             'Apple M1 Pro',
             'Apple M1 Max',
+            'Apple M1 Ultra',
             'Apple M2',
             'Intel Core i5',
             'Intel Core i7',
+            'Intel Core i9',
         ];
 
         return [

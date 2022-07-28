@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'permission_level' => 1
         ]);
 
-        User::factory(100)
+        User::factory(500)
             ->create();
     }
 }

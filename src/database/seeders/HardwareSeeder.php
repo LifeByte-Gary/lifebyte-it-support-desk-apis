@@ -10,6 +10,6 @@ class HardwareSeeder extends Seeder
     public function run(): void
     {
 
-        Hardware::factory(500)->create();
+        Hardware::factory(2000)->create();
     }
 }
