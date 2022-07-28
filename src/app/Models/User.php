@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, UserTrait;
 
+    protected $attributes = [
+        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        'permission_level' => 0
+    ];
+
     protected $fillable = [
         'name',
         'email',
@@ -23,7 +28,7 @@ class User extends Authenticatable
         'desk',
         'state',
         'type',
-        'permission_level'
+        'permission_level',
     ];
 
     protected $hidden = [

@@ -21,6 +21,8 @@ class HardwareFactory extends Factory
             'Adapter',
             'Docking Station',
             'TV',
+            'Monitor',
+            'Phone',
             'Others'
         ];
 
@@ -39,39 +41,22 @@ class HardwareFactory extends Factory
             'Intel Core i7',
         ];
 
-        $ports = [
-            'USB (Male)',
-            'USB (Female)',
-            'USB-C (Male)',
-            'USB-C (Female)',
-            'HDMI (Male)',
-            'HDMI (Female)',
-            'DisplayPort (Male)',
-            'DisplayPort (Female)',
-            'Mini DisplayPort (Male)',
-            'Mini DisplayPort (Female)',
-            'VGA (Female)',
-            'DVI (Female)',
-        ];
-
         return [
             'user_id' => $this->faker->numberBetween(1, 100),
             'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
             'type' => $this->faker->randomElement($types),
             'brand' => $this->faker->company(),
+            'model' => $this->faker->word(),
             'serial_number' => $this->faker->uuid(),
             'tag' => $this->faker->uuid(),
             'spec_os' => $systems[array_rand($systems)],
             'spec_cpu' => $cpus[array_rand($cpus)],
             'spec_memory' => $this->faker->randomDigit(),
+            'spec_storage' => $this->faker->numberBetween(200, 800),
             'spec_screen_size' => $this->faker->numberBetween(10, 40),
-            'spec_ports' => $this->faker->randomElements($ports, 3),
-            'spec_adapter_input' => $ports[array_rand($ports)],
-            'spec_adapter_output' => $this->faker->randomElements($ports, 2),
-            'spec_cable_length' => $this->faker->numberBetween(1, 20),
             'spec_others' => $this->faker->sentence(),
-            'together' => $this->faker->sentences(),
+            'bundle_with' => $this->faker->sentences(),
             'note' => $this->faker->paragraph()
         ];
     }

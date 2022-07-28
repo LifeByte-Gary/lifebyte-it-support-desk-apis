@@ -11,12 +11,12 @@ trait UserTrait
 {
     public function isAdmin(): bool
     {
-        return $this->getAttribute('permission_level') > 0 && $this->getAttribute('state');
+        return ($this->getAttribute('permission_level') === 1 || $this->getAttribute('permission_level') === 2) && $this->getAttribute('state');
     }
 
     public function isSuperAdmin(): bool
     {
-        return $this->getAttribute('permission_level') > 1 && $this->getAttribute('state');
+        return $this->getAttribute('permission_level') === 2 && $this->getAttribute('state');
     }
 
     public function location(): BelongsTo

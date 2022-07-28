@@ -16,24 +16,20 @@ class Hardware extends Model
         'description',
         'type',
         'brand',
+        'model',
         'serial_number',
         'tag',
         'spec_os',
         'spec_cpu',
         'spec_memory',
+        'spec_storage',
         'spec_screen_size',
-        'spec_ports',
-        'spec_adapter_input',
-        'spec_adapter_output',
-        'spec_cable_length',
         'spec_others',
-        'together',
+        'bundle_with',
         'note',
     ];
 
     protected $casts = [
-        'spec_ports' => 'array',
-        'spec_adapter_output' => 'array',
-        'together' => 'array'
+        'bundle_with' => 'array'
     ];
 }

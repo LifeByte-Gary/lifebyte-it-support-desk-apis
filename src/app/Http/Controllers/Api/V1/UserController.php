@@ -2,56 +2,67 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
+use App\Imports\UsersImport;
 use App\Models\User;
-use App\Services\UserService;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Exception;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class UserController extends Controller
 {
-    private UserService $userService;
+    private UserRepository $userRepository;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->userService = $userService;
+        $this->userRepository = $userRepository;
     }
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $query = $request->query();
+        $filter = $request->query();
 
-        $pagination = !(isset($query['pagination']) && $query['pagination'] === 'false');
-
-        if (!$pagination) {
-            return $this->userService->getAllUsers(false);
-        }
-
-        if (isset($query['name'])) {
-            return $this->userService->fuzzySearchUsersByName($query['name']);
-        }
-
-        return $this->userService->getAllUsers();
+        return UserResource::collection($this->userRepository->findUsers($filter));
     }
 
-    public function show($id): UserResource
+    public function show(string $id): UserResource
     {
-        return $this->userService->findAUserById($id);
+        return new UserResource($this->userRepository->findAUserById($id));
     }
 
-    public function store(UserCreateRequest $request)
+    public function store(UserCreateRequest $request): UserResource
     {
-        $newUser = $this->userService->createAUser($request);
-
-        return response($newUser);
+        return new UserResource($this->userRepository->createAUser($request));
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        $this->userService->updateAUser($request, $user);
+        $this->userRepository->updateAUser($request, $user);
 
         return response(null, 204);
+    }
+
+    public function import(Request $request): void
+    {
+        try {
+            Excel::import(new UsersImport, $request->file('users_file'));
+        } catch (Exception) {
+            response('Failed to export', 500);
+        }
+    }
+
+    public function export(): BinaryFileResponse
+    {
+        try {
+            return Excel::download(new UsersExport, 'users.xlsx');
+        } catch (Exception) {
+            response('Failed to export', 500);
+        }
     }
 }
