@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Exports\HardwareExport;
 use App\Http\Requests\HardwareCreateRequest;
 use App\Http\Requests\HardwareUpdateRequest;
 use App\Http\Resources\HardwareResource;
@@ -9,6 +10,9 @@ use App\Models\Hardware;
 use App\Repositories\HardwareRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Exception;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class HardwareController extends Controller
 {
@@ -49,5 +53,19 @@ class HardwareController extends Controller
     public function destroy(Hardware $hardware): void
     {
         // TODO
+    }
+
+    public function import(): void
+    {
+
+    }
+
+    public function export(): BinaryFileResponse
+    {
+        try {
+            return Excel::download(new HardwareExport(), 'hardware.xlsx');
+        } catch (Exception) {
+            response('Failed to export', 500);
+        }
     }
 }
