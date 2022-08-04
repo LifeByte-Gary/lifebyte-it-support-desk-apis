@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Exception;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class UserController extends Controller
 {
@@ -48,21 +47,22 @@ class UserController extends Controller
         return response(null, 204);
     }
 
-    public function import(Request $request): void
+    public function import(Request $request)
     {
         try {
-            Excel::import(new UsersImport, $request->file('users_file'));
+            Excel::import(new UsersImport, $request->file('file'));
+            return response(null, 204);
         } catch (Exception) {
-            response('Failed to export', 500);
+            return response('Failed to import', 500);
         }
     }
 
-    public function export(): BinaryFileResponse
+    public function export()
     {
         try {
             return Excel::download(new UsersExport, 'users.xlsx');
         } catch (Exception) {
-            response('Failed to export', 500);
+            return response('Failed to export', 500);
         }
     }
 }
