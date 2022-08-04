@@ -155,4 +155,9 @@ class HardwareRepository implements HardwareInterface
             ]);
         }
     }
+
+    public function deleteHardware(Hardware $hardware): void
+    {
+        $hardware->delete();
+    }
 }

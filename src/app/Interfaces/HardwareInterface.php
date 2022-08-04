@@ -2,6 +2,7 @@
 
 namespace App\Interfaces;
 
+use App\Http\Requests\HardwareCreateRequest;
 use App\Http\Requests\HardwareUpdateRequest;
 use App\Models\Hardware;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,5 +17,9 @@ interface HardwareInterface
     public function findAHardwareById(string $id): Model|Collection|Builder|array|null;
 
     public function updateHardware(HardwareUpdateRequest $request, Hardware $hardware): void;
+
+    public function createHardware(HardwareCreateRequest $request): void;
+
+    public function deleteHardware(Hardware $hardware): void;
 
 }

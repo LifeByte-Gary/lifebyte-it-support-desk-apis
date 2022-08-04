@@ -45,5 +45,6 @@ Route::prefix('v1')
                 Route::post('/hardware', [HardwareController::class, 'store'])->name('hardware.store');
                 Route::get('/hardware/{id}', [HardwareController::class, 'show'])->name('hardware.show');
                 Route::put('/hardware/{hardware}', [HardwareController::class, 'update'])->name('hardware.update');
+                Route::delete('/hardware/{hardware}', [HardwareController::class, 'destroy'])->name('hardware.destroy');
             });
     });

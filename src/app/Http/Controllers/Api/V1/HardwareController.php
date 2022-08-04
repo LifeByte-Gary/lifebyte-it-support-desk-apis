@@ -53,7 +53,7 @@ class HardwareController extends Controller
 
     public function destroy(Hardware $hardware): void
     {
-        // TODO
+        $this->hardwareRepository->deleteHardware($hardware);
     }
 
     public function import(Request $request)
