@@ -51,6 +51,7 @@ class UserController extends Controller
     {
         try {
             Excel::import(new UsersImport, $request->file('file'));
+
             return response(null, 204);
         } catch (Exception) {
             return response('Failed to import', 500);

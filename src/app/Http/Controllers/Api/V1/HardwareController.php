@@ -6,6 +6,7 @@ use App\Exports\HardwareExport;
 use App\Http\Requests\HardwareCreateRequest;
 use App\Http\Requests\HardwareUpdateRequest;
 use App\Http\Resources\HardwareResource;
+use App\Imports\HardwareImport;
 use App\Models\Hardware;
 use App\Repositories\HardwareRepository;
 use Illuminate\Http\Request;
@@ -55,9 +56,15 @@ class HardwareController extends Controller
         // TODO
     }
 
-    public function import(): void
+    public function import(Request $request)
     {
+        try {
+            Excel::import(new HardwareImport(), $request->file('file'));
 
+            return response(null, 204);
+        } catch (Exception) {
+            return response('Failed to import', 500);
+        }
     }
 
     public function export(): BinaryFileResponse

@@ -60,7 +60,7 @@ class HardwareExport implements FromCollection, WithMapping, WithHeadings
             'Screen Size',
             'Others',
             'Bundle With',
-            'Notes',
+            'Note',
             'User ID'
         ];
     }

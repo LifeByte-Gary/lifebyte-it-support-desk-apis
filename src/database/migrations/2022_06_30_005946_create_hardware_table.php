@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('type');
             $table->string('brand');
             $table->string('model');
-            $table->string('serial_number');
-            $table->string('tag');
+            $table->string('serial_number')->unique();
+            $table->string('tag')->unique();
             $table->string('spec_os')->nullable();
             $table->string('spec_cpu')->nullable();
             $table->double('spec_memory')->nullable();
