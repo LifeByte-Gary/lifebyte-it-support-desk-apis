@@ -66,4 +66,12 @@ class UserController extends Controller
             return response('Failed to export', 500);
         }
     }
+
+    public function statistics()
+    {
+        return response([
+            'employees_total' => $this->userRepository->countEmployees(),
+            'employees_by_department' => $this->userRepository->countEmployees('department'),
+        ]);
+    }
 }

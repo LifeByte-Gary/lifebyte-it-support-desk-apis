@@ -104,4 +104,12 @@ class UserRepository implements UserInterface
 
         $user->save();
     }
+
+    public function countEmployees(string $groupBy = null): mixed
+    {
+        return match ($groupBy) {
+            'department' => User::where(['type' => 'Employee'])->get()->groupBy('department')->map->count(),
+            default => User::where(['type' => 'Employee'])->count(),
+        };
+    }
 }

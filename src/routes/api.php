@@ -30,6 +30,7 @@ Route::prefix('v1')
                 // User routes
                 Route::post('/users/import', [UserController::class, 'import'])->name('users.import');
                 Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
+                Route::get('/users/statistics', [UserController::class, 'statistics'])->name('users.statistics');
                 Route::get('/users', [UserController::class, 'index'])->name('users.index');
                 Route::post('/users', [UserController::class, 'store'])->name('users.store');
                 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
