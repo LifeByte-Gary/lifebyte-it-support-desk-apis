@@ -70,8 +70,8 @@ class UserController extends Controller
     public function statistics()
     {
         return response([
-            'employees_total' => $this->userRepository->countEmployees(),
-            'employees_by_department' => $this->userRepository->countEmployees('department'),
+            'users_total' => $this->userRepository->countUsers(),
+            'users_by_department' => $this->userRepository->countUsers('department'),
         ]);
     }
 }
