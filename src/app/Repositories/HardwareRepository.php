@@ -168,7 +168,7 @@ class HardwareRepository implements HardwareInterface
 
     public function countHardwareByTypeAndDepartment()
     {
-        return Hardware::get()->groupBy('type')->map->groupBy('user.department')->map(function ($type) {
+        return Hardware::with('user')->get()->groupBy('type')->map->groupBy('user.department')->map(function ($type) {
             return $type->map(function ($department) {
                 return count($department);
             });
