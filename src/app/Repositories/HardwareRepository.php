@@ -160,4 +160,18 @@ class HardwareRepository implements HardwareInterface
     {
         $hardware->delete();
     }
+
+    public function countHardware(): int
+    {
+        return Hardware::count();
+    }
+
+    public function countHardwareByTypeAndDepartment()
+    {
+        return Hardware::get()->groupBy('type')->map->groupBy('user.department')->map(function ($type) {
+            return $type->map(function ($department) {
+                return count($department);
+            });
+        });
+    }
 }

@@ -42,6 +42,7 @@ Route::prefix('v1')
                 // Hardware routes
                 Route::post('/hardware/import', [HardwareController::class, 'import'])->name('hardware.import');
                 Route::get('/hardware/export', [HardwareController::class, 'export'])->name('hardware.export');
+                Route::get('/hardware/statistics', [HardwareController::class, 'statistics'])->name('hardware.statistics');
                 Route::get('/hardware', [HardwareController::class, 'index'])->name('hardware.index');
                 Route::post('/hardware', [HardwareController::class, 'store'])->name('hardware.store');
                 Route::get('/hardware/{id}', [HardwareController::class, 'show'])->name('hardware.show');

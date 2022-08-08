@@ -75,4 +75,12 @@ class HardwareController extends Controller
             response('Failed to export', 500);
         }
     }
+
+    public function statistics()
+    {
+        return response([
+            'hardware_total' => $this->hardwareRepository->countHardware(),
+            'hardware_by_type_and_department' => $this->hardwareRepository->countHardwareByTypeAndDepartment()
+        ]);
+    }
 }
